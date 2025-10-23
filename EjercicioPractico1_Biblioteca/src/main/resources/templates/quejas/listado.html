@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+
+<head th:replace="~{fragmentos :: head}">
+    <title>Listado de Quejas y Sugerencias - Biblioteca Digital</title>
+</head>
+<body>
+    <header th:replace="~{fragmentos :: header}"></header>
+
+    <main class="container my-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1>Listado de Quejas y Sugerencias</h1>
+            <a th:href="@{/quejas}" class="btn btn-success">
+                <i class="fas fa-plus"></i> Nueva Queja/Sugerencia
+            </a>
+        </div>
+
+        <div class="card shadow">
+            <div class="card-header bg-info text-white">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-comments"></i> Mensajes Recibidos
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Nombre</th>
+                                <th>Email</th>
+                                <th>Tipo</th>
+                                <th>Asunto</th>
+                                <th>Mensaje</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="queja : ${quejas}">
+                                <td th:text="${#temporals.format(queja.createdAt, 'dd/MM/yyyy HH:mm')}"></td>
+                                <td th:text="${queja.nombreCliente} ?: 'Anónimo'"></td>
+                                <td>
+                                    <span th:if="${queja.email}" th:text="${queja.email}"></span>
+                                    <span th:unless="${queja.email}" class="text-muted">No proporcionado</span>
+                                </td>
+                                <td>
+                                    <span th:switch="${queja.tipo}">
+                                        <span th:case="QUEJA" class="badge bg-danger">Queja</span>
+                                        <span th:case="SUGERENCIA" class="badge bg-success">Sugerencia</span>
+                                        <span th:case="CONSULTA" class="badge bg-info">Consulta</span>
+                                    </span>
+                                </td>
+                                <td th:text="${queja.asunto} ?: 'Sin asunto'"></td>
+                                <td>
+                                    <span th:if="${#strings.length(queja.mensaje) > 50}"
+                                          th:text="${#strings.substring(queja.mensaje, 0, 50)} + '...'">
+                                    </span>
+                                    <span th:unless="${#strings.length(queja.mensaje) > 50}"
+                                          th:text="${queja.mensaje}">
+                                    </span>
+                                </td>
+                                <td>
+                                    <span th:if="${queja.tratado}" class="badge bg-success">Atendido</span>
+                                    <span th:unless="${queja.tratado}" class="badge bg-warning">Pendiente</span>
+                                </td>
+                            </tr>
+                            <tr th:if="${#lists.isEmpty(quejas)}">
+                                <td colspan="7" class="text-center text-muted py-4">
+                                    <i class="fas fa-comments fa-2x mb-3"></i><br>
+                                    No hay quejas o sugerencias registradas.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer th:replace="~{fragmentos :: footer}"></footer>
+</body>
+</html>

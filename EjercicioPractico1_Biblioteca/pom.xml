@@ -99,7 +99,7 @@
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
-                    <mainClass>com.biblioteca.app.BibliotecaAppApplication</mainClass>
+                    <mainClass>com.biblioteca.app.BibliotecaappApplication</mainClass>
                 </configuration>
             </plugin>
             

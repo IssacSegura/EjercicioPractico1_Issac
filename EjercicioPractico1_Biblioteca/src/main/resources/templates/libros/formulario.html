@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+
+<head th:replace="~{fragmentos :: head}">
+    <title th:text="${libro.id != null} ? 'Editar Libro' : 'Nuevo Libro'">Formulario Libro</title>
+</head>
+<body>
+    <header th:replace="~{fragmentos :: header}"></header>
+
+    <main class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow">
+                    <div class="card-header" th:classappend="${libro.id != null} ? 'bg-warning' : 'bg-primary'">
+                        <h4 class="card-title mb-0 text-white">
+                            <i class="fas" th:classappend="${libro.id != null} ? 'fa-edit' : 'fa-plus'"></i>
+                            <span th:text="${libro.id != null} ? 'Editar Libro' : 'Nuevo Libro'"></span>
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <form th:action="@{/libros/guardar}" th:object="${libro}" method="post">
+                            <!-- Campo oculto para ID -->
+                            <input type="hidden" th:field="*{id}">
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="titulo" class="form-label">Título *</label>
+                                    <input type="text" th:field="*{titulo}" 
+                                           class="form-control" 
+                                           id="titulo"
+                                           placeholder="Ingrese el título del libro"
+                                           th:classappend="${#fields.hasErrors('titulo')} ? 'is-invalid' : ''">
+                                    <div th:if="${#fields.hasErrors('titulo')}" class="invalid-feedback">
+                                        <span th:errors="*{titulo}"></span>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6 mb-3">
+                                    <label for="autor" class="form-label">Autor *</label>
+                                    <input type="text" th:field="*{autor}" 
+                                           class="form-control" 
+                                           id="autor"
+                                           placeholder="Ingrese el nombre del autor"
+                                           th:classappend="${#fields.hasErrors('autor')} ? 'is-invalid' : ''">
+                                    <div th:if="${#fields.hasErrors('autor')}" class="invalid-feedback">
+                                        <span th:errors="*{autor}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="isbn" class="form-label">ISBN</label>
+                                    <input type="text" th:field="*{isbn}" 
+                                           class="form-control" 
+                                           id="isbn"
+                                           placeholder="Ingrese el ISBN">
+                                </div>
+                                
+                                <div class="col-md-6 mb-3">
+                                    <label for="categoria" class="form-label">Categoría *</label>
+                                    <select th:field="*{categoria}" 
+                                            class="form-select"
+                                            id="categoria"
+                                            th:classappend="${#fields.hasErrors('categoria')} ? 'is-invalid' : ''">
+                                        <option value="">Seleccione una categoría</option>
+                                        <option th:each="categoria : ${categorias}" 
+                                                th:value="${categoria.id}"
+                                                th:text="${categoria.nombre}">
+                                        </option>
+                                    </select>
+                                    <div th:if="${#fields.hasErrors('categoria')}" class="invalid-feedback">
+                                        <span th:errors="*{categoria}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="descripcion" class="form-label">Descripción</label>
+                                <textarea th:field="*{descripcion}" 
+                                          class="form-control" 
+                                          id="descripcion"
+                                          rows="3"
+                                          placeholder="Ingrese una descripción del libro"></textarea>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <label for="fechaPublicacion" class="form-label">Fecha Publicación</label>
+                                    <input type="date" th:field="*{fechaPublicacion}" 
+                                           class="form-control" 
+                                           id="fechaPublicacion">
+                                </div>
+                                
+                                <div class="col-md-4 mb-3">
+                                    <label for="precio" class="form-label">Precio ($)</label>
+                                    <input type="number" th:field="*{precio}" 
+                                           class="form-control" 
+                                           id="precio"
+                                           step="0.01"
+                                           min="0"
+                                           placeholder="0.00">
+                                </div>
+                                
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label">Disponibilidad</label>
+                                    <div class="form-check mt-2">
+                                        <input type="checkbox" th:field="*{disponible}" 
+                                               class="form-check-input" 
+                                               id="disponible">
+                                        <label class="form-check-label" for="disponible">
+                                            Libro disponible
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <a th:href="@{/libros}" class="btn btn-secondary me-md-2">
+                                    <i class="fas fa-arrow-left"></i> Cancelar
+                                </a>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i> 
+                                    <span th:text="${libro.id != null} ? 'Actualizar' : 'Guardar'"></span> Libro
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer th:replace="~{fragmentos :: footer}"></footer>
+</body>
+</html>
