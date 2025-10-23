@@ -43,7 +43,7 @@ public class QuejaController {
         
         quejaService.guardar(queja);
         redirectAttributes.addFlashAttribute("mensaje", 
-            "Su " + queja.getTipo().toString().toLowerCase() + " ha sido enviada exitosamente");
+            "Su " + queja.getTipo().toString().toLowerCase() + " se envio exitosamente");
         return "redirect:/quejas";
     }
     
