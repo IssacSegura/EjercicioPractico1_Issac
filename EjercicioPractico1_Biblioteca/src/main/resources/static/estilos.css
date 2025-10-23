@@ -3,7 +3,232 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to c
 Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
 */
 /* 
-    Created on : 22 oct 2025, 8:33:13 p. m.
+    Created on : 22 oct 2025, 10:05:48 p. m.
     Author     : issac
 */
 
+:root {
+    --primary: #8B4513;      /* Marrón cuero - Libros antiguos */
+    --secondary: #D2691E;    /* Marrón chocolate */
+    --accent: #CD853F;       /* Marrón claro */
+    --light: #F5F5DC;        /* Beige - Páginas antiguas */
+    --dark: #654321;         /* Marrón oscuro */
+}
+
+/* Navbar personalizado */
+.navbar.bg-primary {
+    background-color: var(--primary) !important;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: var(--light) !important;
+    background-color: var(--secondary);
+    border-radius: 5px;
+}
+
+/* Botones personalizados */
+.btn-primary {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+}
+
+.btn-success {
+    background-color: var(--accent);
+    border-color: var(--accent);
+}
+
+.btn-success:hover {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+}
+
+.btn-warning {
+    background-color: var(--accent);
+    border-color: var(--accent);
+    color: white;
+}
+
+.btn-warning:hover {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+    color: white;
+}
+
+.btn-info {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+}
+
+.btn-info:hover {
+    background-color: var(--accent);
+    border-color: var(--accent);
+}
+
+/* Cards personalizadas */
+.card {
+    border: 1px solid var(--accent);
+}
+
+.card-header.bg-primary {
+    background-color: var(--primary) !important;
+}
+
+.card-header.bg-success {
+    background-color: var(--accent) !important;
+}
+
+.card-header.bg-info {
+    background-color: var(--secondary) !important;
+}
+
+.card-header.bg-warning {
+    background-color: var(--accent) !important;
+}
+
+/* Badges personalizados */
+.badge.bg-primary {
+    background-color: var(--primary) !important;
+}
+
+.badge.bg-success {
+    background-color: var(--accent) !important;
+}
+
+.badge.bg-info {
+    background-color: var(--secondary) !important;
+}
+
+.badge.bg-warning {
+    background-color: var(--accent) !important;
+}
+
+/* Jumbotron/Header personalizado */
+.jumbotron {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%) !important;
+    color: white;
+    border-radius: 10px;
+}
+
+/* Tablas personalizadas */
+.table-dark {
+    background-color: var(--dark) !important;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(205, 133, 63, 0.1);
+}
+
+/* Alertas personalizadas */
+.alert-success {
+    background-color: rgba(205, 133, 63, 0.2);
+    border-color: var(--accent);
+    color: var(--dark);
+}
+
+.alert-info {
+    background-color: rgba(139, 69, 19, 0.1);
+    border-color: var(--primary);
+    color: var(--dark);
+}
+
+/* Footer personalizado */
+footer.bg-dark {
+    background-color: var(--dark) !important;
+}
+
+/* Efectos hover para cards */
+.card:hover {
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(139, 69, 19, 0.2);
+}
+
+/* Formularios personalizados */
+.form-control:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 0.2rem rgba(205, 133, 63, 0.25);
+}
+
+.form-select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 0.2rem rgba(205, 133, 63, 0.25);
+}
+
+/* Background general */
+body {
+    background-color: var(--light);
+}
+
+/* Textos con colores del tema */
+.text-primary {
+    color: var(--primary) !important;
+}
+
+.text-success {
+    color: var(--accent) !important;
+}
+
+/* Botones de acción en tablas */
+.btn-group .btn-warning {
+    background-color: var(--accent);
+    border-color: var(--accent);
+}
+
+.btn-group .btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+/* Efectos para enlaces */
+a {
+    color: var(--primary);
+}
+
+a:hover {
+    color: var(--secondary);
+}
+
+/* Personalización de bordes */
+.border-primary {
+    border-color: var(--primary) !important;
+}
+
+/* Badge de estado */
+.badge.bg-danger {
+    background-color: #dc3545 !important;
+}
+
+/* Mejoras visuales adicionales */
+.shadow {
+    box-shadow: 0 0.5rem 1rem rgba(139, 69, 19, 0.15) !important;
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(205, 133, 63, 0.15);
+}
+
+/* Efectos de transición suaves */
+.btn, .card, .nav-link {
+    transition: all 0.3s ease;
+}
+
+/* Mejoras para responsividad */
+@media (max-width: 768px) {
+    .navbar-nav {
+        text-align: center;
+    }
+    
+    .btn-group {
+        display: flex;
+        justify-content: center;
+    }
+}
